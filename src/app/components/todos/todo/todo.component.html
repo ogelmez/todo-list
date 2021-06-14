@@ -1,0 +1,6 @@
+<mat-list-item [class.list__check--decoration]="toDo?.complete">
+  <mat-checkbox [checked]="toDo.complete" (change)="this.completeChange.emit($event)">{{ toDo?.task }}</mat-checkbox>
+</mat-list-item>
+<button (click)="deleteToDo()" mat-icon-button color="warn">
+  <mat-icon>delete</mat-icon>
+</button>

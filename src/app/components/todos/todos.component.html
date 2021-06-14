@@ -1,0 +1,34 @@
+<mat-card class="card__form--size">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Yeni Görev Ekle</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-add-todo (toDoChange)="onAddToDoChange($event)"></app-add-todo>
+    <div>
+      <button mat-button color="primary" (click)="addToDo()">Ekle</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div>
+  <mat-card class="card__body--size">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Yapılacaklar</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngIf="toDosSelector | async; let toDos">
+        <ng-container *ngIf="toDos.length > 0; else completeList">
+          <app-list-todo [toDos]="toDos" (toDoChange)="onCompleteToDo($event)"></app-list-todo>
+        </ng-container>
+        <ng-template #completeList>
+          <div>
+            <h4>Liste boş</h4>
+          </div>
+        </ng-template>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</div>
